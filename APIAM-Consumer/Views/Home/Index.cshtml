@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2>Client Credentials flow (Machine to Machine)</h2>
+    <p><a href="https://developer.okta.com/authentication-guide/implementing-authentication/client-creds" target="_blank">Instructions</a></p>
+
+    @if (ViewBag.Message != null)
+    {
+        var displaytype = "alert alert-success";
+        if (ViewBag.IsError)
+        {
+            displaytype = "alert alert-danger";
+        }
+        <p class="@displaytype">@ViewBag.Message</p>
+    }
+
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Consumer App</h3>
+            <ul>
+                <li>@Html.ActionLink("Get (JWT) Token", "SubmitCredentials", "Home")</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Service App</h3>
+            <ul>
+                <li>@Html.ActionLink("Public End Point", "CallPublic", "Home")</li>
+                <li>@Html.ActionLink("Private End Point", "CallPrivate", "Home")</li>
+            </ul>
+        </div>
+    </div>
+</div>

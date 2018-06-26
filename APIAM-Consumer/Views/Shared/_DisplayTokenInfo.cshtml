@@ -1,0 +1,46 @@
+﻿@{
+var tokenresponse = APIAM_Consumer.Helpers.LoginHelper.GetOIDCIntrospectionDetails();
+
+    if (tokenresponse != null)
+    {
+<div class="jumbotron" style="font-size: small">
+    <p class="text-success" style="font-weight: bold;">Access Token Information</p>
+    <table class="table">
+        <tr>
+            <th>User Name</th>
+            <th>Status</th>
+            <th>Issuer</th>
+        </tr>
+        <tr>
+            <td>
+                @if (!string.IsNullOrEmpty(tokenresponse.UserName))
+                {
+                    @tokenresponse.UserName
+                }
+                else
+                {
+                    @:N/A
+                }
+            </td>
+            <td>@tokenresponse.Active</td>
+            <td>@tokenresponse.ISS</td>
+        </tr>
+        <tr>
+            <th colspan="3">&nbsp;</th>
+        </tr>
+        <tr>
+            <th>Scope</th>
+            <th>Token Type</th>
+            <th>Expiration</th>
+        </tr>
+        <tr>
+            <td>@tokenresponse.Scope</td>
+            <td>@tokenresponse.TokenType</td>
+            <td>@tokenresponse.Exp</td>
+        </tr>
+    </table>
+
+    <p>@Html.ActionLink("Revoke Token", "RevokeToken", "Home")</p>
+</div>
+    }
+}
